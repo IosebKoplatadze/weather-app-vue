@@ -1,10 +1,14 @@
 <template>
-  <div></div>
+  <WeatherList></WeatherList>
 </template>
 
 <script>
-export default {};
-</script>
+import WeatherList from '@/components/weather-list';
 
-<style lang="scss" scoped>
-</style>
+export default {
+  name: 'Weathers',
+  components: {
+    WeatherList,
+  },
+};
+</script>

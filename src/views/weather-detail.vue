@@ -3,8 +3,8 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'WeatherDetail',
+};
 </script>
-
-<style lang="scss" scoped>
-</style>
+ 
