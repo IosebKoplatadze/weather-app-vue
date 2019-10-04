@@ -8,6 +8,7 @@ Vue.use(Vuex);
 
 const state = () => ({
   cities: [],
+  forecasts: [],
 });
 
 export default new Vuex.Store({

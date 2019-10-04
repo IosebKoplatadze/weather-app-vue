@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group">
-    <WeatherListItem v-for="city in cities" :key="city.name" :city="city"></WeatherListItem>
+    <WeatherListItem v-for="city in cities" :key="city" :city="city"></WeatherListItem>
   </ul>
 </template>
 
@@ -11,14 +11,14 @@ import { mapActions, mapState } from 'vuex';
 export default {
   name: 'WeatherList',
 
-  async created() {
-    await this.loadCities();
+  created() {
+    this.loadCities();
   },
 
   methods: {
     ...mapActions(['getCitiesAction']),
-    async loadCities() {
-      await this.getCitiesAction();
+    loadCities() {
+      this.getCitiesAction();
     },
   },
 
@@ -36,5 +36,7 @@ export default {
 .list-group {
   display: flex;
   justify-content: center;
+  padding: 0;
+  flex-wrap: wrap;
 }
 </style>
