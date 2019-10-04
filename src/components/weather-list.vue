@@ -1,5 +1,6 @@
 <template>
-  <ul>
+  <ul class="list-group">
+    <WeatherListItem v-for="city in cities" :key="city.name" :city="city"></WeatherListItem>
     <WeatherListItem v-for="city in cities" :key="city.name" :city="city"></WeatherListItem>
   </ul>
 </template>
@@ -28,3 +29,11 @@ export default {
   },
 };
 </script>
+
+
+<style lang="scss" scoped>
+.list-group {
+  display: flex;
+  justify-content: center;
+}
+</style>

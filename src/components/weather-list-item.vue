@@ -1,9 +1,11 @@
 <template>
-  <li>
-    <h3>{{city.name}}</h3>
-    <img :src="icon" />
-    <div>{{city.temp}}°</div>
-    <div>{{city.description}}</div>
+  <li class="list-group-item">
+    <div class="body">
+      <h3 class="title">{{city.name}}</h3>
+      <div>{{city.temp}}°</div>
+      <img :src="icon" />
+      <div>{{city.description}}</div>
+    </div>
   </li>
 </template>
 
@@ -25,3 +27,21 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.list-group-item {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1.25rem;
+
+  .body {
+    padding: 1.25rem;
+    min-width: 100px;
+
+    .title {
+      margin-top: 0;
+    }
+  }
+}
+</style>
