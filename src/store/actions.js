@@ -43,7 +43,10 @@ export default {
       commit(DELETE_CITY, city);
     }
   },
-  async getForecastAction({ commit }, city) {
+  async getForecastAction({ commit, getters }, city) {
+    if (getters.getForecastByCity(city)) {
+      return;
+    }
     const forecast = await getCityWeather(city);
     if (forecast) {
       commit(GET_FORECAST, forecast);
