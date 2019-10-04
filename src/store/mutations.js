@@ -3,6 +3,7 @@ import {
   GET_WEATHER,
   ADD_CITY,
   DELETE_CITY,
+  GET_FORECAST,
 } from './mutation-types';
 import { uniqBy } from 'lodash';
 
@@ -18,5 +19,8 @@ export default {
   },
   [GET_WEATHER](state, weather) {
     state.weathers = uniqBy([weather, ...state.weathers], 'name');
+  },
+  [GET_FORECAST](state, forecast) {
+    state.forecasts = uniqBy([forecast, ...state.forecasts], 'name');
   },
 };

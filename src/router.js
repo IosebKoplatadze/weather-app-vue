@@ -22,6 +22,7 @@ export default new Router({
     {
       path: '/weathers/:city',
       name: 'weather-detail',
+      props: true,
       component: () =>
         import(
           /* webpackChunkName: "bundle.weathers" */ './views/weather-detail.vue'

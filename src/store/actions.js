@@ -1,10 +1,11 @@
 import { storageService } from '../shared/storage.service';
-import { getCityWeather } from '../shared/data.service';
+import { getCityWeather, getCityForecast } from '../shared/data.service';
 import {
   GET_CITIES,
   GET_WEATHER,
   ADD_CITY,
   DELETE_CITY,
+  GET_FORECAST,
 } from './mutation-types';
 import { LOCAL_STORAGE_KEY } from '../shared/config';
 
@@ -50,6 +51,15 @@ export default {
     const weather = await getCityWeather(city);
     if (weather) {
       commit(GET_WEATHER, weather);
+    }
+  },
+  async getForecastAction({ commit, getters }, city) {
+    if (getters.getForecastByCity(city)) {
+      return;
+    }
+    const forecast = await getCityForecast(city);
+    if (forecast) {
+      commit(GET_FORECAST, forecast);
     }
   },
 };

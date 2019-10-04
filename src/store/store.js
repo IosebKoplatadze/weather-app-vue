@@ -9,6 +9,7 @@ Vue.use(Vuex);
 const state = () => ({
   cities: [],
   weathers: [],
+  forecasts: [],
 });
 
 export default new Vuex.Store({
