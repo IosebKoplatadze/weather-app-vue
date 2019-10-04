@@ -20,15 +20,12 @@ export default {
     },
   },
 
-  async created() {
-    await this.loadForecasts();
+  created() {
+    this.getForecastAction(this.city);
   },
 
   methods: {
     ...mapActions(['getForecastAction']),
-    async loadForecasts() {
-      await this.getForecastAction(this.city);
-    },
   },
 
   computed: {

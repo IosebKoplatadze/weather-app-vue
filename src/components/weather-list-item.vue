@@ -25,15 +25,12 @@ export default {
     },
   },
 
-  async created() {
-    await this.loadWeather();
+  created() {
+    this.getWeatherAction(this.city);
   },
 
   methods: {
     ...mapActions(['getWeatherAction', 'deleteCityAction']),
-    async loadWeather() {
-      await this.getWeatherAction(this.city);
-    },
     removeHandler() {
       this.deleteCityAction(this.city);
     },
