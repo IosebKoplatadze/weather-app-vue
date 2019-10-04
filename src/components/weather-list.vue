@@ -1,35 +1,36 @@
 <template>
   <ul class="list-group">
     <WeatherListItem v-for="city in cities" :key="city.name" :city="city"></WeatherListItem>
-    <WeatherListItem v-for="city in cities" :key="city.name" :city="city"></WeatherListItem>
   </ul>
 </template>
 
 <script>
-import { getCityWeather } from '@/shared/data.service';
 import WeatherListItem from '@/components/weather-list-item';
+import { mapActions, mapState } from 'vuex';
+
 export default {
   name: 'WeatherList',
-  data() {
-    return {
-      cities: null,
-    };
-  },
+
   async created() {
     await this.loadCities();
   },
+
   methods: {
+    ...mapActions(['getCitiesAction']),
     async loadCities() {
-      const london = await getCityWeather('London');
-      this.cities = [london];
+      await this.getCitiesAction();
     },
   },
+
+  computed: {
+    ...mapState(['cities']),
+  },
+
   components: {
     WeatherListItem,
   },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .list-group {

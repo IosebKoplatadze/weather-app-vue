@@ -6,7 +6,9 @@ import getters from './getters';
 
 Vue.use(Vuex);
 
-const state = {};
+const state = () => ({
+  cities: [],
+});
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',

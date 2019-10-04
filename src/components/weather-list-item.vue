@@ -1,14 +1,15 @@
 <template>
   <li class="list-group-item">
-    <div class="body">
-      <h3 class="title">{{city.name}}</h3>
-      <div>{{city.temp}}°</div>
-      <img :src="icon" />
-      <div>{{city.description}}</div>
-    </div>
+    <router-link class="link" :to="{ name: 'weather-detail', params: { city: city.name } }">
+      <div class="body">
+        <h3 class="title">{{ city.name }}</h3>
+        <div>{{ city.temp }}°</div>
+        <img :src="icon" />
+        <div>{{ city.description }}</div>
+      </div>
+    </router-link>
   </li>
 </template>
-
 
 <script>
 import { ICON_ENDPOINT } from '@/shared/config';
@@ -34,7 +35,10 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 1.25rem;
-
+  .link {
+    text-decoration: none;
+    color: black;
+  }
   .body {
     padding: 1.25rem;
     min-width: 100px;
