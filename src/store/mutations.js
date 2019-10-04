@@ -1,6 +1,6 @@
 import {
   GET_CITIES,
-  GET_FORECAST,
+  GET_WEATHER,
   ADD_CITY,
   DELETE_CITY,
 } from './mutation-types';
@@ -16,7 +16,7 @@ export default {
   [DELETE_CITY](state, city) {
     state.cities = [...state.cities.filter(c => c !== city)];
   },
-  [GET_FORECAST](state, forecast) {
-    state.forecasts = uniqBy([forecast, ...state.forecasts], 'name');
+  [GET_WEATHER](state, weather) {
+    state.weathers = uniqBy([weather, ...state.weathers], 'name');
   },
 };

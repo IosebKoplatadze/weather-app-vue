@@ -2,7 +2,7 @@ import { storageService } from '../shared/storage.service';
 import { getCityWeather } from '../shared/data.service';
 import {
   GET_CITIES,
-  GET_FORECAST,
+  GET_WEATHER,
   ADD_CITY,
   DELETE_CITY,
 } from './mutation-types';
@@ -18,8 +18,8 @@ export default {
     if (getters.getCityByName(city)) {
       return true;
     }
-    const forecast = await getCityWeather(city);
-    if (!forecast) {
+    const weather = await getCityWeather(city);
+    if (!weather) {
       return false;
     }
 
@@ -43,13 +43,13 @@ export default {
       commit(DELETE_CITY, city);
     }
   },
-  async getForecastAction({ commit, getters }, city) {
-    if (getters.getForecastByCity(city)) {
+  async getWeatherAction({ commit, getters }, city) {
+    if (getters.getWeatherByCity(city)) {
       return;
     }
-    const forecast = await getCityWeather(city);
-    if (forecast) {
-      commit(GET_FORECAST, forecast);
+    const weather = await getCityWeather(city);
+    if (weather) {
+      commit(GET_WEATHER, weather);
     }
   },
 };

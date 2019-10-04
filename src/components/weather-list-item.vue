@@ -2,11 +2,11 @@
   <li class="list-group-item">
     <button class="btn-remove" @click="removeHandler()">X</button>
     <router-link class="link" :to="{ name: 'weather-detail', params: { city: city } }">
-      <div v-if="forecast" class="body">
-        <h3 class="title">{{ forecast.name }}</h3>
-        <div>{{ forecast.temp }}°</div>
+      <div v-if="weather" class="body">
+        <h3 class="title">{{ weather.name }}</h3>
+        <div>{{ weather.temp }}°</div>
         <img :src="icon" />
-        <div>{{ forecast.description }}</div>
+        <div>{{ weather.description }}</div>
       </div>
     </router-link>
   </li>
@@ -26,13 +26,13 @@ export default {
   },
 
   async created() {
-    await this.loadForecast();
+    await this.loadWeather();
   },
 
   methods: {
-    ...mapActions(['getForecastAction', 'deleteCityAction']),
-    async loadForecast() {
-      await this.getForecastAction(this.city);
+    ...mapActions(['getWeatherAction', 'deleteCityAction']),
+    async loadWeather() {
+      await this.getWeatherAction(this.city);
     },
     removeHandler() {
       this.deleteCityAction(this.city);
@@ -40,12 +40,12 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['getForecastByCity']),
-    forecast() {
-      return this.getForecastByCity(this.city);
+    ...mapGetters(['getWeatherByCity']),
+    weather() {
+      return this.getWeatherByCity(this.city);
     },
     icon() {
-      return `${ICON_ENDPOINT}/${this.forecast.icon}.png`;
+      return `${ICON_ENDPOINT}/${this.weather.icon}.png`;
     },
   },
 };

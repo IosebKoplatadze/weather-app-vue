@@ -1,12 +1,26 @@
 import * as axios from 'axios';
 import { API_ENDPOINT, OPENWEATHERMAP_KEY } from './config';
 
-export const getCityWeather = async function (city) {
+export const getCityWeather = async city => {
   try {
     const response = await axios.get(
       `${API_ENDPOINT}/weather?q=${city}&units=metric&appid=${OPENWEATHERMAP_KEY}`,
     );
     const data = parseResponse(response);
+    return parseData(data);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getDetailedCityWeather = async city => {
+  try {
+    const response = await axios.get(
+      `${API_ENDPOINT}/forecast/daily?q=${city}&cnt=16&units=metric&appid=${OPENWEATHERMAP_KEY}`,
+    );
+    const data = parseResponse(response);
+    console.log('TCL: data', data);
     return parseData(data);
   } catch (error) {
     console.log(error);
