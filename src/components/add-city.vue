@@ -2,7 +2,13 @@
   <div class="input-group">
     <span v-if="notFound">City not found</span>
     <div class="control">
-      <input type="text" class="input" placeholder="Search City..." v-model="city" />
+      <input
+        type="text"
+        class="input"
+        placeholder="Search City..."
+        v-model="city"
+        v-on:keyup.enter="addHandler()"
+      />
       <button @click="addHandler()" class="input-append" type="button">Add</button>
     </div>
   </div>

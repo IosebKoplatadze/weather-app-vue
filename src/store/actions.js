@@ -12,7 +12,7 @@ import { LOCAL_STORAGE_KEY } from '../shared/config';
 export default {
   getCitiesAction({ commit }) {
     const cities = storageService.get(LOCAL_STORAGE_KEY);
-    commit(GET_CITIES, cities);
+    commit(GET_CITIES, cities || []);
   },
   async addCityAction({ commit, getters }, city) {
     city = city.toLowerCase();

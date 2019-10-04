@@ -1,19 +1,21 @@
  <template>
   <div v-if="forecasts">
     <h1>{{ forecasts.name }}</h1>
-    <ul class="list-group">
-      <li v-for="(day, name) in forecasts.days" :key="name">
-        <h2>{{ name }}</h2>
-        <div v-for="forecast in day" :key="forecast.dateTime">
-          <div class="body">
+    <div class="container">
+      <div class="card" v-for="(day, date) in forecasts.days" :key="date">
+        <h2>{{ date }}</h2>
+        <ul class="list-group">
+          <li class="list-item" v-for="forecast in day" :key="forecast.dateTime">
             <h3 class="title">{{ time(forecast) }}</h3>
-            <div>{{ forecast.temp }}°</div>
             <img :src="icon(forecast)" />
-            <div>{{ forecast.description }}</div>
-          </div>
-        </div>
-      </li>
-    </ul>
+            <div>
+              <div>{{ forecast.temp }}°</div>
+              <div>{{ forecast.description }}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,10 +64,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-group {
+.container {
   display: flex;
   justify-content: center;
   padding: 0;
   flex-wrap: wrap;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1.25rem;
+  height: 100%;
+  min-width: 300px;
+}
+.list-group {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+
+  .list-item {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+  }
 }
 </style>
